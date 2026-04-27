@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mazimpaka Phillippe Mugisha — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF8F4;
+      --ink: #1A1916;
+      --muted: #7A7773;
+      --border: rgba(26,25,22,0.12);
+      --accent: #2C5F4A;
+      --accent-light: #EAF3EE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+
+    section { padding: 5rem 0; border-bottom: 0.5px solid var(--border); }
+    section:last-child { border-bottom: none; }
+
+    /* HERO */
+    #hero {
+      padding-top: 9rem;
+      padding-bottom: 5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -1px;
+    }
+
+    .hero-name span {
+      display: block;
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      margin-top: 1.25rem;
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .hero-contact a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .hero-contact a:hover { color: var(--accent); }
+
+    .hero-location {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* SECTION LABELS */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: var(--border);
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      line-height: 1.7;
+      max-width: 640px;
+      color: var(--ink);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      background: white;
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    /* PROJECTS */
+    .projects-list { display: flex; flex-direction: column; }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-top: 0.5px solid var(--border);
+      align-items: start;
+    }
+
+    .project-item:last-child { border-bottom: 0.5px solid var(--border); }
+
+    .project-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: flex-end;
+      padding-top: 4px;
+    }
+
+    .project-tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .exp-meta { padding-top: 2px; }
+
+    .exp-company {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .exp-period {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .exp-bullets li {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 2px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* FADE IN */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-name { animation: fadeUp 0.7s ease both; }
+    .hero-tagline { animation: fadeUp 0.7s 0.1s ease both; }
+    .hero-contact { animation: fadeUp 0.7s 0.2s ease both; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-contact { align-items: flex-start; }
+      .project-item { grid-template-columns: 1fr; }
+      .project-tags { justify-content: flex-start; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-name">Mazimpaka Phillippe</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div>
+        <h1 class="hero-name">
+          Mazimpaka<br>
+          <span>Phillippe Mugisha</span>
+        </h1>
+        <p class="hero-tagline">
+          Business &amp; IT professional specialising in data entry, digital operations, and community support. Passionate about using technology to improve workflows and create meaningful impact.
+        </p>
+      </div>
+      <div class="hero-contact">
+        <a href="mailto:mazimpakaphilllippe12@gmail.com">mazimpakaphilllippe12@gmail.com</a>
+        <a href="https://www.linkedin.com/in/mazimpaka-phillippe" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="hero-location">Kigali, Rwanda</div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">About</div>
+      <p class="about-text">
+        Detail-oriented and self-driven professional with hands-on experience in data management, customer support, and digital operations. Committed to continuous learning and leveraging AI tools to deliver accurate, efficient, and impactful results.
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">Core competencies</div>
+      <div class="skills-grid">
+        <div class="skill-tag">Data Entry</div>
+        <div class="skill-tag">Information Processing</div>
+        <div class="skill-tag">Data Cleaning &amp; Validation</div>
+        <div class="skill-tag">Basic Data Analysis</div>
+        <div class="skill-tag">SQL (Beginner)</div>
+        <div class="skill-tag">Python (Beginner)</div>
+        <div class="skill-tag">Excel &amp; Google Sheets</div>
+        <div class="skill-tag">Documentation &amp; Reporting</div>
+        <div class="skill-tag">CRM Tools (Basic)</div>
+        <div class="skill-tag">AI Tools &amp; Prompt Engineering</div>
+        <div class="skill-tag">Digital Record Management</div>
+        <div class="skill-tag">Email &amp; Communication Tools</div>
+        <div class="skill-tag">Notion, Trello, Slack</div>
+        <div class="skill-tag">Microsoft Teams</div>
+        <div class="skill-tag">Google Workspace</div>
+        <div class="skill-tag">Basic Troubleshooting</div>
+        <div class="skill-tag">Windows Command Prompt</div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Selected projects</div>
+      <div class="projects-list">
+
+        <div class="project-item">
+          <div>
+            <div class="project-name">Mental Health Awareness Content Project</div>
+            <div class="project-desc">Created simple, accessible digital content promoting mental well-being for youth communities. Shared resources, crafted awareness messages, and supported online engagement to reduce stigma and encourage open conversations.</div>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Mental Health</span>
+            <span class="project-tag">Content Creation</span>
+            <span class="project-tag">Community Support</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <div class="project-name">Customer Support Documentation Project</div>
+            <div class="project-desc">Developed clear documentation templates, FAQs, and response guides to improve support efficiency at Recast Hub. Helped organise common issues, streamline communication, and enhance user experience.</div>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Customer Support</span>
+            <span class="project-tag">Documentation</span>
+            <span class="project-tag">Operations</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <div class="project-name">Tour Operations &amp; Client Management System</div>
+            <div class="project-desc">Designed and maintained a structured digital workflow for managing itineraries, client details, and service updates for P&amp;P Rwanda Tours. Improved accuracy, organisation, and service delivery.</div>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Business Operations</span>
+            <span class="project-tag">Client Management</span>
+            <span class="project-tag">Hospitality</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <div class="project-name">AI Productivity &amp; Data Entry Practice Lab</div>
+            <div class="project-desc">Built a personal practice environment using AI tools, spreadsheets, and basic SQL/Python to strengthen data entry, validation, and information-processing skills.</div>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">AI Tools</span>
+            <span class="project-tag">Data Entry</span>
+            <span class="project-tag">Data Analytics</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label">Experience</div>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-company">Recast Hub</div>
+            <div class="exp-period">2022 — Present</div>
+          </div>
+          <div>
+            <div class="exp-role">Community Support &amp; Mental Health Awareness Assistant</div>
+            <ul class="exp-bullets">
+              <li>Processed community information, inquiries, and support requests.</li>
+              <li>Maintained digital records and documented cases with accuracy.</li>
+              <li>Created awareness content and supported youth engagement.</li>
+              <li>Collaborated with team members to verify information and improve workflows.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-company">P&amp;P Rwanda Tours</div>
+            <div class="exp-period">2020 — Present</div>
+          </div>
+          <div>
+            <div class="exp-role">Tour Operations &amp; Customer Support Assistant</div>
+            <ul class="exp-bullets">
+              <li>Managed client details, bookings, and service updates.</li>
+              <li>Prepared itineraries, quotations, and service summaries.</li>
+              <li>Maintained organised digital files and ensured accurate documentation.</li>
+              <li>Communicated with clients to clarify details and resolve issues.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-company">2000 Hotel Kigali</div>
+            <div class="exp-period">2019 — 2020</div>
+          </div>
+          <div>
+            <div class="exp-role">Concierge / Guest Services</div>
+            <ul class="exp-bullets">
+              <li>Assisted guests with reservations, inquiries, and service requests.</li>
+              <li>Maintained accurate guest records and coordinated with hotel departments.</li>
+              <li>Delivered professional customer service in a fast-paced environment.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2026 Mazimpaka Phillippe Mugisha &nbsp;·&nbsp; Kigali, Rwanda
+  </footer>
+
+</body>
+</html>
